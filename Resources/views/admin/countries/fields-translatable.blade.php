@@ -10,7 +10,8 @@
                     <?php foreach (LaravelLocalization::getSupportedLocales() as $locale => $language): ?>
                     <?php $i++; ?>
                     <li class="{{ App::getLocale() == $locale ? 'active' : '' }}">
-                        <a href="#tab_{{ $i }}" data-toggle="tab">{{ trans('core::core.tab.'. strtolower($language['name'])) }}</a>
+                        <a href="#tab_{{ $i }}"
+                           data-toggle="tab">{{ trans('core::core.tab.'. strtolower($language['name'])) }}</a>
                     </li>
                     <?php endforeach; ?>
                 </ul>
@@ -22,14 +23,14 @@
                     <div class="tab-pane {{ App::getLocale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
                         <div class="box-body">
                             <p>
-                                
-                   @include('asgardgenerators::partials.fields.text', [
-                       'title' => 'Title',
-                       'name' => 'title',
-                       'value' => $country->title,
-                       'placeholder' => '',
-                       'is_translation' => 1
-                   ])
+
+                                @include('asgardgenerators::partials.fields.text', [
+                                    'title' => 'Title',
+                                    'name' => 'title',
+                                    'value' => $country->{"title:{$lang}"},
+                                    'placeholder' => '',
+                                    'is_translation' => 1
+                                ])
 
 
                             </p>

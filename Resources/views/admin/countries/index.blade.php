@@ -5,7 +5,8 @@
         {{ trans('countries::countries.title.countries') }}
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
+        <li><a href="{{ route('dashboard.index') }}"><i
+                        class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
         <li class="active">{{ trans('countries::countries.title.countries') }}</li>
     </ol>
 @stop
@@ -15,7 +16,8 @@
         <div class="col-xs-12">
             <div class="row">
                 <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
-                    <a href="{{ route('admin.countries.country.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
+                    <a href="{{ route('admin.countries.country.create') }}" class="btn btn-primary btn-flat"
+                       style="padding: 4px 10px;">
                         <i class="fa fa-pencil"></i> {{ trans('countries::countries.button.create country') }}
                     </a>
                 </div>
@@ -29,7 +31,7 @@
                         <thead>
                         <tr>
                             <th>Name</th>
-<th>Iso_2</th>
+                            <th>Iso_2</th>
                             <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                         </tr>
                         </thead>
@@ -37,12 +39,16 @@
                         <?php if (isset($data)): ?>
                         <?php foreach ($data as $country): ?>
                         <tr>
-                            <td>{{ $country->name }}</td>
-<td>{{ $country->iso_2 }}</td>
+                            <td>{{ $country->title }}</td>
+                            <td>{{ $country->iso_2 }}</td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('admin.countries.country.edit', [$country->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
-                                    <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.countries.country.destroy', [$country->id]) }}"><i class="fa fa-trash"></i></button>
+                                    <a href="{{ route('admin.countries.country.edit', [$country->id]) }}"
+                                       class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
+                                    <button class="btn btn-danger btn-flat" data-toggle="modal"
+                                            data-target="#modal-delete-confirmation"
+                                            data-action-target="{{ route('admin.countries.country.destroy', [$country->id]) }}">
+                                        <i class="fa fa-trash"></i></button>
                                 </div>
                             </td>
                         </tr>
@@ -76,10 +82,10 @@
 
 @section('scripts')
     <script type="text/javascript">
-        $( document ).ready(function() {
+        $(document).ready(function () {
             $(document).keypressAction({
                 actions: [
-                    { key: 'c', route: "<?= route('admin.countries.country.create') ?>" }
+                    {key: 'c', route: "<?= route('admin.countries.country.create') ?>"}
                 ]
             });
         });
@@ -94,7 +100,7 @@
                 "sort": true,
                 "info": true,
                 "autoWidth": true,
-                "order": [[ 0, "desc" ]],
+                "order": [[0, "desc"]],
                 "language": {
                     "url": '<?php echo Module::asset("core:js/vendor/datatables/{$locale}.json") ?>'
                 }
