@@ -12,10 +12,11 @@ class LanguageController extends AdminBaseController
     /**
      * @var LanguageRepository
      */
-    private $language;
+    protected $language;
 
-    public function __construct(LanguageRepository $language)
-    {
+    public function __construct(
+        LanguageRepository $language
+    ) {
         parent::__construct();
 
         $this->language = $language;
@@ -36,16 +37,12 @@ class LanguageController extends AdminBaseController
     /**
      * Show the form for creating a new resource.
      *
+     * @param Language $language
      * @return Response
      */
     public function create(Language $language)
     {
-        //$profiles_repository = app(\Modules\Countries\Repositories\ProfileRepository::class);
-        //$profiles = $profiles_repository->all();
-
-
         $variables = [
-            //'profiles' => $profiles,
             'language' => $language,
         ];
 
@@ -62,7 +59,8 @@ class LanguageController extends AdminBaseController
     {
         $this->language->create($request->all());
 
-        flash()->success(trans('core::core.messages.resource created', ['name' => trans('countries::languages.title.languages')]));
+        flash()->success(trans('core::core.messages.resource created',
+            ['name' => trans('countries::languages.title.languages')]));
 
         return redirect()->route(strtolower('admin.countries.language.index'));
     }
@@ -75,13 +73,8 @@ class LanguageController extends AdminBaseController
      */
     public function edit(Language $language)
     {
-        //$profiles_repository = app(\Modules\Countries\Repositories\ProfileRepository::class);
-        //$profiles = $profiles_repository->all();
-
-
         $variables = [
             'language' => $language,
-            //'profiles' => $profiles,
         ];
 
         return view('countries::admin.languages.edit', $variables);
@@ -98,7 +91,8 @@ class LanguageController extends AdminBaseController
     {
         $this->language->update($language, $request->all());
 
-        flash()->success(trans('core::core.messages.resource updated', ['name' => trans('countries::languages.title.languages')]));
+        flash()->success(trans('core::core.messages.resource updated',
+            ['name' => trans('countries::languages.title.languages')]));
 
         return redirect()->route(strtolower('admin.countries.language.index'));
     }
@@ -113,7 +107,8 @@ class LanguageController extends AdminBaseController
     {
         $this->language->destroy($language);
 
-        flash()->success(trans('core::core.messages.resource deleted', ['name' => trans('countries::languages.title.languages')]));
+        flash()->success(trans('core::core.messages.resource deleted',
+            ['name' => trans('countries::languages.title.languages')]));
 
         return redirect()->route(strtolower('admin.countries.language.index'));
     }

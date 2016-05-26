@@ -6,19 +6,28 @@ use Illuminate\Http\Response;
 use Modules\Countries\Entities\City;
 use Modules\Countries\Repositories\CityRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
+use Modules\Countries\Repositories\CountryRepository;
 
 class CityController extends AdminBaseController
 {
     /**
      * @var CityRepository
      */
-    private $city;
+    protected $city;
 
-    public function __construct(CityRepository $city)
-    {
+    /**
+     * @var CountryRepository
+     */
+    protected $country;
+
+    public function __construct(
+        CityRepository $city,
+        CountryRepository $country
+    ) {
         parent::__construct();
 
         $this->city = $city;
+        $this->country = $country;
     }
 
     /**
@@ -36,20 +45,14 @@ class CityController extends AdminBaseController
     /**
      * Show the form for creating a new resource.
      *
+     * @param City $city
      * @return Response
      */
     public function create(City $city)
     {
-        //$dealers_repository = app(\Modules\Countries\Repositories\DealerRepository::class);
-        //$dealers = $dealers_repository->all();
-        $countries_repository = app(\Modules\Countries\Repositories\CountryRepository::class);
-        $countries = $countries_repository->all();
-        
-
         $variables = [
-            //'dealers' => $dealers,
-            'countries' => $countries,
             'city' => $city,
+            'countries' => $this->country->all(),
         ];
 
         return view('countries::admin.cities.create', $variables);
@@ -78,16 +81,9 @@ class CityController extends AdminBaseController
      */
     public function edit(City $city)
     {
-        //$dealers_repository = app(\Modules\Countries\Repositories\DealerRepository::class);
-        //$dealers = $dealers_repository->all();
-        $countries_repository = app(\Modules\Countries\Repositories\CountryRepository::class);
-        $countries = $countries_repository->all();
-        
-
         $variables = [
             'city' => $city,
-            //'dealers' => $dealers,
-            'countries' => $countries,
+            'countries' => $this->country->all(),
         ];
 
         return view('countries::admin.cities.edit', $variables);

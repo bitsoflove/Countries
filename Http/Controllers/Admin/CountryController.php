@@ -4,6 +4,7 @@ use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Countries\Entities\Country;
+use Modules\Countries\Repositories\CityRepository;
 use Modules\Countries\Repositories\CountryRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 
@@ -12,13 +13,21 @@ class CountryController extends AdminBaseController
     /**
      * @var CountryRepository
      */
-    private $country;
+    protected $country;
 
-    public function __construct(CountryRepository $country)
-    {
+    /**
+     * @var CityRepository
+     */
+    protected $city;
+
+    public function __construct(
+        CountryRepository $country,
+        CityRepository $city
+    ) {
         parent::__construct();
 
         $this->country = $country;
+        $this->city = $city;
     }
 
     /**
@@ -36,22 +45,13 @@ class CountryController extends AdminBaseController
     /**
      * Show the form for creating a new resource.
      *
+     * @param Country $country
      * @return Response
      */
     public function create(Country $country)
     {
-        $cities_repository = app(\Modules\Countries\Repositories\CityRepository::class);
-        $cities = $cities_repository->all();
-        //$identities_repository = app(\Modules\Countries\Repositories\IdentityRepository::class);
-        //$identities = $identities_repository->all();
-        //$priceTypeVats_repository = app(\Modules\Countries\Repositories\PriceTypeVatRepository::class);
-        //$priceTypeVats = $priceTypeVats_repository->all();
-
-
         $variables = [
-            'cities' => $cities,
-            //'identities' => $identities,
-            //'priceTypeVats' => $priceTypeVats,
+            'cities' => $this->city->all(),
             'country' => $country,
         ];
 
@@ -81,19 +81,9 @@ class CountryController extends AdminBaseController
      */
     public function edit(Country $country)
     {
-        $cities_repository = app(\Modules\Countries\Repositories\CityRepository::class);
-        $cities = $cities_repository->all();
-        //$identities_repository = app(\Modules\Countries\Repositories\IdentityRepository::class);
-        //$identities = $identities_repository->all();
-        //$priceTypeVats_repository = app(\Modules\Countries\Repositories\PriceTypeVatRepository::class);
-        //$priceTypeVats = $priceTypeVats_repository->all();
-
-
         $variables = [
             'country' => $country,
-            'cities' => $cities,
-            //'identities' => $identities,
-            //'priceTypeVats' => $priceTypeVats,
+            'cities' => $this->city->all(),
         ];
 
         return view('countries::admin.countries.edit', $variables);
