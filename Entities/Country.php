@@ -9,33 +9,61 @@ use Modules\Countries\Entities\CountryTranslation;
 
 class Country extends Model
 {
-
-    /**
-     * Generated
-     */
-
-    protected $table = 'countries';
-    protected $fillable = ['id', 'slug', 'iso_2', 'country_id', 'title'];
-
     use SoftDeletes;
 
     use EloquentTentacle;
 
     use Translatable;
 
-    public $translatedAttributes = ["country_id","title"];
+    /**
+     * @var string
+     */
+    protected $table = 'countries';
+
+    /**
+     * @var array
+     */
+    protected $fillable = [
+        'id',
+        'slug',
+        'iso_2',
+        'country_id',
+        'title'
+    ];
+
+    /**
+     * @var array
+     */
+    public $translatedAttributes = [
+        "country_id",
+        "title"
+    ];
+
+    /**
+     * @var string
+     */
     public $translationModel = CountryTranslation::class;
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function cities()
     {
         return $this->hasMany(City::class, 'country_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function countryTranslations()
     {
         return $this->hasMany(CountryTranslation::class, 'country_id', 'id');
     }
 
+    /**
+     * @param array $attributes
+     * @return bool|int
+     */
     public function update(array $attributes = [])
     {
         $res = parent::update($attributes);
@@ -43,6 +71,10 @@ class Country extends Model
         return $res;
     }
 
+    /**
+     * @param array $attributes
+     * @return static
+     */
     public static function create(array $attributes = [])
     {
         $res = parent::create($attributes);

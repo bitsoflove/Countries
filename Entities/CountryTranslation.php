@@ -6,22 +6,34 @@ use Modules\Countries\Entities\Country;
 
 class CountryTranslation extends Model
 {
-
-    /**
-     * Generated
-     */
-
-    protected $table = 'country_translations';
-    protected $fillable = ['id', 'country_id', 'title'];
-
     use SoftDeletes;
 
+    /**
+     * @var string
+     */
+    protected $table = 'country_translations';
 
+    /**
+     * @var array
+     */
+    protected $fillable = [
+        'id',
+        'country_id',
+        'title'
+    ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function country()
     {
         return $this->belongsTo(Country::class, 'country_id', 'id');
     }
 
+    /**
+     * @param array $attributes
+     * @return bool|int
+     */
     public function update(array $attributes = [])
     {
         $res = parent::update($attributes);
@@ -29,6 +41,10 @@ class CountryTranslation extends Model
         return $res;
     }
 
+    /**
+     * @param array $attributes
+     * @return static
+     */
     public static function create(array $attributes = [])
     {
         $res = parent::create($attributes);

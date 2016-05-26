@@ -8,26 +8,39 @@ use Modules\Countries\Entities\Country;
 class City extends Model
 {
 
-    /**
-     * Generated
-     */
-
-    protected $table = 'cities';
-    protected $fillable = ['id', 'name', 'postcode', 'country_id', 'lat', 'lng'];
-
-    protected $with = [
-        'country'
-    ];
-
     use SoftDeletes;
 
     use EloquentTentacle;
 
+    /**
+     * @var string
+     */
+    protected $table = 'cities';
+
+    /**
+     * @var array
+     */
+    protected $fillable = ['id', 'name', 'postcode', 'country_id', 'lat', 'lng'];
+
+    /**
+     * @var array
+     */
+    protected $with = [
+        'country'
+    ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function country()
     {
         return $this->belongsTo(Country::class, 'country_id', 'id');
     }
 
+    /**
+     * @param array $attributes
+     * @return bool|int
+     */
     public function update(array $attributes = [])
     {
         $res = parent::update($attributes);
@@ -35,6 +48,10 @@ class City extends Model
         return $res;
     }
 
+    /**
+     * @param array $attributes
+     * @return static
+     */
     public static function create(array $attributes = [])
     {
         $res = parent::create($attributes);
