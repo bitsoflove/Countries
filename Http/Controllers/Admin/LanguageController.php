@@ -6,6 +6,8 @@ use Illuminate\Http\Response;
 use Modules\Countries\Entities\Language;
 use Modules\Countries\Repositories\LanguageRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
+use Modules\Countries\Http\Requests\Language\CreateRequest;
+use Modules\Countries\Http\Requests\Language\UpdateRequest;
 
 class LanguageController extends AdminBaseController
 {
@@ -52,10 +54,10 @@ class LanguageController extends AdminBaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request $request
+     * @param CreateRequest $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
         $this->language->create($request->all());
 
@@ -84,10 +86,10 @@ class LanguageController extends AdminBaseController
      * Update the specified resource in storage.
      *
      * @param  Language $language
-     * @param  Request $request
+     * @param UpdateRequest $request
      * @return Response
      */
-    public function update(Language $language, Request $request)
+    public function update(Language $language, UpdateRequest $request)
     {
         $this->language->update($language, $request->all());
 
