@@ -7,6 +7,8 @@ use Modules\Countries\Entities\City;
 use Modules\Countries\Repositories\CityRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use Modules\Countries\Repositories\CountryRepository;
+use Modules\Countries\Http\Requests\City\CreateRequest;
+use Modules\Countries\Http\Requests\City\UpdateRequest;
 
 class CityController extends AdminBaseController
 {
@@ -61,10 +63,10 @@ class CityController extends AdminBaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request $request
+     * @param CreateRequest $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
         $this->city->create($request->all());
 
@@ -93,10 +95,10 @@ class CityController extends AdminBaseController
      * Update the specified resource in storage.
      *
      * @param  City $city
-     * @param  Request $request
+     * @param UpdateRequest $request
      * @return Response
      */
-    public function update(City $city, Request $request)
+    public function update(City $city, UpdateRequest $request)
     {
         $this->city->update($city, $request->all());
 
