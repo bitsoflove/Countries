@@ -7,6 +7,8 @@ use Modules\Countries\Entities\Country;
 use Modules\Countries\Repositories\CityRepository;
 use Modules\Countries\Repositories\CountryRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
+use Modules\Countries\Http\Requests\Country\CreateRequest;
+use Modules\Countries\Http\Requests\Country\UpdateRequest;
 
 class CountryController extends AdminBaseController
 {
@@ -61,10 +63,10 @@ class CountryController extends AdminBaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request $request
+     * @param CreateRequest $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
         $this->country->create($request->all());
 
@@ -93,12 +95,11 @@ class CountryController extends AdminBaseController
      * Update the specified resource in storage.
      *
      * @param  Country $country
-     * @param  Request $request
+     * @param UpdateRequest $request
      * @return Response
      */
-    public function update(Country $country, Request $request)
+    public function update(Country $country, UpdateRequest $request)
     {
-        $all = $request->all();
         $this->country->update($country, $request->all());
 
         flash()->success(trans('core::core.messages.resource updated', ['name' => trans('countries::countries.title.countries')]));
