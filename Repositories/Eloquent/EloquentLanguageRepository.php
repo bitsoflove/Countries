@@ -7,7 +7,7 @@ use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
 
 class EloquentLanguageRepository extends EloquentBaseRepository implements LanguageRepository
 {
-  /**
+    /**
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function all()

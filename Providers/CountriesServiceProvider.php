@@ -35,7 +35,6 @@ class CountriesServiceProvider extends ServiceProvider
 
     private function registerBindings()
     {
-
         $migrations = realpath(__DIR__.'/../Database/Migrations');
 
         $this->publishes([
@@ -98,9 +97,8 @@ class CountriesServiceProvider extends ServiceProvider
             }
         );
 
-        $this->app->bind('languages',function(){
+        $this->app->bind('languages', function () {
             return $this->app->make(LanguagesGateway::class);
         });
-
     }
 }

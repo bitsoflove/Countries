@@ -46,7 +46,7 @@ class CountryController extends AdminBaseController
         //$identities = $identities_repository->all();
         //$priceTypeVats_repository = app(\Modules\Countries\Repositories\PriceTypeVatRepository::class);
         //$priceTypeVats = $priceTypeVats_repository->all();
-        
+
 
         $variables = [
             'cities' => $cities,
@@ -87,7 +87,7 @@ class CountryController extends AdminBaseController
         //$identities = $identities_repository->all();
         //$priceTypeVats_repository = app(\Modules\Countries\Repositories\PriceTypeVatRepository::class);
         //$priceTypeVats = $priceTypeVats_repository->all();
-        
+
 
         $variables = [
             'country' => $country,

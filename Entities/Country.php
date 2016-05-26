@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Countries\Entities\City;
 use Modules\Countries\Entities\CountryTranslation;
 
-class Country extends Model {
+class Country extends Model
+{
 
     /**
      * Generated
@@ -25,21 +26,25 @@ class Country extends Model {
     public $translatedAttributes = ["country_id","title"];
     public $translationModel = CountryTranslation::class;
 
-    public function cities() {
+    public function cities()
+    {
         return $this->hasMany(City::class, 'country_id', 'id');
     }
 
-    public function countryTranslations() {
+    public function countryTranslations()
+    {
         return $this->hasMany(CountryTranslation::class, 'country_id', 'id');
     }
 
-    public function update(array $attributes = []) {
+    public function update(array $attributes = [])
+    {
         $res = parent::update($attributes);
         self::sync($this, $attributes);
         return $res;
     }
 
-    public static function create(array $attributes = []) {
+    public static function create(array $attributes = [])
+    {
         $res = parent::create($attributes);
         self::sync($res, $attributes);
         return $res;
@@ -48,8 +53,7 @@ class Country extends Model {
     /**
      * Sync many-to-many relationships
      */
-    private static function sync($model, array $attributes = []) {
-        
+    private static function sync($model, array $attributes = [])
+    {
     }
-
 }

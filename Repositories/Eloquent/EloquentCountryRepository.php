@@ -7,7 +7,7 @@ use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
 
 class EloquentCountryRepository extends EloquentBaseRepository implements CountryRepository
 {
-  /**
+    /**
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function all()

@@ -3,33 +3,32 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateLanguagesTable extends Migration {
+class CreateLanguagesTable extends Migration
+{
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::create('languages', function(Blueprint $table)
-		{
-			$table->increments('id');
-			$table->string('slug', 10)->unique('slug_UNIQUE');
-			$table->timestamps();
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('languages', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('slug', 10)->unique('slug_UNIQUE');
+            $table->timestamps();
             $table->dateTime('deleted_at')->nullable();
         });
-	}
+    }
 
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('languages');
-	}
-
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('languages');
+    }
 }

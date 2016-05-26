@@ -5,7 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Countries\Entities\Country;
 
-class City extends Model {
+class City extends Model
+{
 
     /**
      * Generated
@@ -22,17 +23,20 @@ class City extends Model {
 
     use EloquentTentacle;
 
-    public function country() {
+    public function country()
+    {
         return $this->belongsTo(Country::class, 'country_id', 'id');
     }
 
-    public function update(array $attributes = []) {
+    public function update(array $attributes = [])
+    {
         $res = parent::update($attributes);
         self::sync($this, $attributes);
         return $res;
     }
 
-    public static function create(array $attributes = []) {
+    public static function create(array $attributes = [])
+    {
         $res = parent::create($attributes);
         self::sync($res, $attributes);
         return $res;
@@ -41,8 +45,7 @@ class City extends Model {
     /**
      * Sync many-to-many relationships
      */
-    private static function sync($model, array $attributes = []) {
-        
+    private static function sync($model, array $attributes = [])
+    {
     }
-
 }

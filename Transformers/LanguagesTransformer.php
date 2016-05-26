@@ -2,15 +2,16 @@
 
 use Illuminate\Support\Collection;
 
-class LanguagesTransformer {
+class LanguagesTransformer
+{
 
 
     /**
      * @param Collection $collection
      * @throws \Exception
      */
-    public function transform(Collection $collection){
+    public function transform(Collection $collection)
+    {
         throw new \Exception("Implement LanguageTransformer.transform method.");
     }
-
 }

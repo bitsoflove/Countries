@@ -7,7 +7,7 @@ use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
 
 class EloquentCityRepository extends EloquentBaseRepository implements CityRepository
 {
-  /**
+    /**
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function all()

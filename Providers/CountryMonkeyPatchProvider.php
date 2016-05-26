@@ -1,6 +1,5 @@
 <?php namespace Modules\Countries\Providers;
 
-
 use Modules\Product\Providers\BaseMonkeyPatchProvider;
 
 class CountryMonkeyPatchProvider extends BaseMonkeyPatchProvider

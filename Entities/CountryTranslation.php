@@ -41,7 +41,5 @@ class CountryTranslation extends Model
      */
     private static function sync($model, array $attributes = [])
     {
-
     }
-
 }

@@ -42,7 +42,7 @@ class LanguageController extends AdminBaseController
     {
         //$profiles_repository = app(\Modules\Countries\Repositories\ProfileRepository::class);
         //$profiles = $profiles_repository->all();
-        
+
 
         $variables = [
             //'profiles' => $profiles,
@@ -77,7 +77,7 @@ class LanguageController extends AdminBaseController
     {
         //$profiles_repository = app(\Modules\Countries\Repositories\ProfileRepository::class);
         //$profiles = $profiles_repository->all();
-        
+
 
         $variables = [
             'language' => $language,

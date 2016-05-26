@@ -37,7 +37,5 @@ class Language extends Model
      */
     private static function sync($model, array $attributes = [])
     {
-
     }
-
 }

@@ -34,7 +34,8 @@ class LanguagesGateway
      *
      * @return Collection
      */
-    public function get(){
+    public function get()
+    {
         return $this->repository->all();
     }
 
@@ -43,7 +44,8 @@ class LanguagesGateway
      *
      * @return Collection
      */
-    public function ids(){
+    public function ids()
+    {
         return $this->get()->lists('id');
     }
 
@@ -52,10 +54,10 @@ class LanguagesGateway
      *
      * @return Collection
      */
-    public function keyed(){
+    public function keyed()
+    {
         // @todo: add name column to languages?
         // @todo: add translations for languages?
-        return $this->get()->lists('slug','id');
+        return $this->get()->lists('slug', 'id');
     }
-
 }
