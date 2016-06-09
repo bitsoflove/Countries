@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'name' => 'Countries'
+    'name' => 'Countries',
+    'default' => null
 ];

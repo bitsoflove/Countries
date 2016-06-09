@@ -1,6 +1,7 @@
 <?php namespace Modules\Countries\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Modules\Countries\Facades\Gateways\CountryGateway;
 use Modules\Countries\Facades\Gateways\LanguagesGateway;
 
 class CountriesServiceProvider extends ServiceProvider
@@ -99,6 +100,10 @@ class CountriesServiceProvider extends ServiceProvider
 
         $this->app->bind('languages', function () {
             return $this->app->make(LanguagesGateway::class);
+        });
+
+        $this->app->bind('country', function () {
+            return $this->app->make(CountryGateway::class);
         });
     }
 }
